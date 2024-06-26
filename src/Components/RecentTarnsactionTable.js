@@ -31,7 +31,7 @@ const RecentTarnsactionTable = (props) => {
                           </td>
                           <td className="width-300px">{item?.title}</td>
                           <td className="width-300px">{item?.category}</td>
-                          <td>{item?.paymentMode}</td>
+                          <td className="width-300px">{item?.paymentMode}</td>
                           <td>₹ {item?.amount}</td>
                         </tr>
                       )

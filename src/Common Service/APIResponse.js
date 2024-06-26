@@ -1,7 +1,6 @@
 import { toast } from "react-toastify";
 
-export const apiResponse = (isMsgDisplay, data, setLoading) => {
-  debugger;
+export const apiResponse = (isMsgDisplay, data, setLoading) => {  
   if (data?.status_code === 0) {
     if (isMsgDisplay) {
       setLoading(false);
@@ -33,8 +32,7 @@ export const apiResponse = (isMsgDisplay, data, setLoading) => {
         status: 0,
         message: toast.error("Unprocessable Entity"),
       };
-    } else if (data?.response?.status === 401) {
-      debugger
+    } else if (data?.response?.status === 401) {      
       localStorage.clear();
       window.location.pathname = "/";
     } else if (data?.response?.status === 405) {

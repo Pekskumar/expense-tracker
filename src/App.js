@@ -16,8 +16,7 @@ import Home from "./Pages/AllPages/Home";
 function App() {
   const Token = useSelector((state) => state.userinfo.Token);
   const is_logged = Token !== null ? true : false;
-  console.log("Token ::", Token);
-  console.log("is_logged ::", is_logged);
+  
 
   const AllRoutes = () => (
     <Routes>
