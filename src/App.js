@@ -45,7 +45,7 @@ function App() {
   );
 
   const AuthRoutes = () => (
-    <Routes>
+    <Routes basename={process.env.PUBLIC_URL}>
       <Route path="/" element={<AuthLayout />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
