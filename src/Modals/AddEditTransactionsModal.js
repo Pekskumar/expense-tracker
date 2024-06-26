@@ -141,9 +141,11 @@ const AddEditTransactionsModal = (props) => {
         </Modal.Header>
         <Form onSubmit={(e) => HandleSubmit(e)}>
           <Modal.Body>
-            <div className="radio-btn-wrap ">
+            <div className=" ">
+              <Row>
               {TransactionTypeArray.map((itemR, indexR) => (
                 <>
+                <Col sm={3}>
                   <div className="radio-btn-wrap-one">
                     <Form.Check
                       inline
@@ -182,8 +184,10 @@ const AddEditTransactionsModal = (props) => {
                       <div className="checkmark-radio"></div>
                     </label> */}
                   </div>
+                  </Col>
                 </>
               ))}
+              </Row>
             </div>
             <Form.Group className="my-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Title</Form.Label>
@@ -304,9 +308,12 @@ const AddEditTransactionsModal = (props) => {
                 </Form.Group>
               </Col>
             </Row>
+
             <div className="radio-btn-wrap my-3">
+              <Row>
               {PaymentModeArray.map((itemR, indexR) => (
                 <>
+                <Col sm={4}>
                   <div className="radio-btn-wrap-one">
                     <Form.Check
                       inline
@@ -345,8 +352,10 @@ const AddEditTransactionsModal = (props) => {
                       <div className="checkmark-radio"></div>
                     </label> */}
                   </div>
+                  </Col>
                 </>
               ))}
+              </Row>
             </div>
 
             {/*<Form.Group
