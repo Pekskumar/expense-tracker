@@ -16,8 +16,8 @@ import Home from "./Pages/AllPages/Home";
 function App() {
   const Token = useSelector((state) => state.userinfo.Token);
   const is_logged = Token !== null ? true : false;
-  console.log("Token ::",Token);
-  console.log("is_logged ::",is_logged);
+  console.log("Token ::", Token);
+  console.log("is_logged ::", is_logged);
 
   const AllRoutes = () => (
     <Routes>
@@ -45,7 +45,7 @@ function App() {
   );
 
   const AuthRoutes = () => (
-    <Routes basename={process.env.PUBLIC_URL}>
+    <Routes >
       <Route path="/" element={<AuthLayout />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
@@ -54,7 +54,7 @@ function App() {
   return (
     <>
       <ToastContainer />
-      <Router>{is_logged ? <AllRoutes /> : <AuthRoutes />}</Router>
+      <Router basename={process.env.PUBLIC_URL}>{is_logged ? <AllRoutes /> : <AuthRoutes />}</Router>
     </>
   );
 }
