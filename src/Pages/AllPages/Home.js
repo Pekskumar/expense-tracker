@@ -238,7 +238,7 @@ const Home = () => {
         )}
       </div>
       <Row>
-        <Col className="mb-3">
+        <Col md={3} className="mb-3">
           <div className="cardcount-body p-4">
             <h5>Account Balance</h5>
             {Loading ? (
@@ -252,7 +252,7 @@ const Home = () => {
             )}
           </div>
         </Col>
-        <Col className="mb-3">
+        <Col md={3} className="mb-3">
           <div className="cardcount-body p-4">
             <h5>Expenses - Income</h5>
             {Loading ? (
