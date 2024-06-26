@@ -16,10 +16,11 @@ import Home from "./Pages/AllPages/Home";
 function App() {
   const Token = useSelector((state) => state.userinfo.Token);
   const is_logged = Token !== null ? true : false;
-  
+
 
   const AllRoutes = () => (
     <Routes>
+       <Route path="*" element={<Navigate to="/" />} />
       <Route path="/" element={<Layout />}>
         <Route index element={<Navigate to="/home" replace />} />
         <Route
@@ -39,14 +40,15 @@ function App() {
           }
         />
       </Route>
-      <Route path="*" element={<Navigate to="/" />} />
+     
     </Routes>
   );
 
   const AuthRoutes = () => (
     <Routes >
-      <Route path="/" element={<AuthLayout />} />
       <Route path="*" element={<Navigate to="/" />} />
+      <Route path="/" element={<AuthLayout />} />
+      
     </Routes>
   );
 
