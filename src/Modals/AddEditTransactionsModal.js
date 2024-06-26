@@ -145,7 +145,7 @@ const AddEditTransactionsModal = (props) => {
               <Row>
               {TransactionTypeArray.map((itemR, indexR) => (
                 <>
-                <Col sm={3}>
+                <Col md={6}>
                   <div className="radio-btn-wrap-one">
                     <Form.Check
                       inline
@@ -313,7 +313,7 @@ const AddEditTransactionsModal = (props) => {
               <Row>
               {PaymentModeArray.map((itemR, indexR) => (
                 <>
-                <Col sm={4}>
+                <Col md={6}>
                   <div className="radio-btn-wrap-one">
                     <Form.Check
                       inline
