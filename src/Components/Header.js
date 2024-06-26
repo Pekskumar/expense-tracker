@@ -16,8 +16,9 @@ const Header = () => {
 
   let dispatch = useDispatch();
   function fnLogout() {
+    dispatch(userToken(''));
     localStorage.clear();
-    dispatch(userToken(null));
+   
     // dispatch(userInfo());
   }
   return (
