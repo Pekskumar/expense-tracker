@@ -13,11 +13,15 @@ import ChangePasswordModal from "../Modals/ChangePasswordModal";
 const Header = () => {
   const UserData = useSelector((state) => state.userinfo.UserInfo);
   const [ChangePWDModalShow, setChangePWDModalShow] = useState(false);
-
+console.log('====================================');
+console.log("UserData",UserData);
+console.log('====================================');
   let dispatch = useDispatch();
   function fnLogout() {
-    dispatch(userToken(''));
+    dispatch(userInfo([]));
+    dispatch(userToken(''));    
     localStorage.clear();
+    
    
     // dispatch(userInfo());
   }
@@ -47,7 +51,7 @@ const Header = () => {
                       backgroundColor: `#404acb`,
                     }}
                   >
-                    {UserData?.displayname[0]}
+                    {UserData && UserData !== '' && UserData?.displayname && UserData?.displayname[0]}
                   </div>
                 </Dropdown.Toggle>
 
