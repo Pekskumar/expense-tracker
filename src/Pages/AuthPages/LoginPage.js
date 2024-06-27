@@ -74,7 +74,7 @@ const LoginPage = (props) => {
           <Form.Label>Email</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Email"
+            placeholder="email@example.com"
             maxLength={146}
             value={input.emailid}
             onChange={(e) =>
@@ -95,8 +95,8 @@ const LoginPage = (props) => {
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
-            placeholder="Enter only 6 digit or number"
-            maxLength={6}
+            placeholder="maximum 10 digit or number"
+            maxLength={10}
             value={input.password}
             onChange={(e) =>
               setInput({

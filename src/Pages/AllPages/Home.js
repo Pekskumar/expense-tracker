@@ -232,12 +232,12 @@ const Home = () => {
         ) : Object.keys(CategoryObject)?.length > 0 ? (
           <DoughnutChart data={CategoryObject} />
         ) : (
-          <div className="text-center">
+          <div className="text-center nodata-img">
             <img src={Nodata} alt="nodata" />
           </div>
         )}
       </div>
-      <Row>
+      <Row className="mb-4">
         <Col md={6} className="mb-3">
           <div className="cardcount-body p-4">
             <h5>Account Balance</h5>
@@ -246,7 +246,7 @@ const Home = () => {
             ) : Object.keys(BarchartObject)?.length > 0 ? (
               <GradientLineChart data={BarchartObject} />
             ) : (
-              <div className="text-center">
+              <div className="text-center nodata-img" >
                 <img src={Nodata} alt="nodata" />
               </div>
             )}
@@ -260,7 +260,7 @@ const Home = () => {
             ) : Object.keys(BarchartObject)?.length > 0 ? (
               <BarchartComponent data={BarchartObject} />
             ) : (
-              <div className="text-center">
+              <div className="text-center nodata-img">
                 <img src={Nodata} alt="nodata" />
               </div>
             )}
@@ -275,7 +275,7 @@ const Home = () => {
             ) : RecentTransactionList?.length > 0 ? (
               <RecentTarnsactionTable data={RecentTransactionList} />
             ) : (
-              <div className="text-center">
+              <div className="text-center nodata-img">
                 <img src={Nodata} alt="nodata" />
               </div>
             )}

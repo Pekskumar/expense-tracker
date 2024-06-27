@@ -12,6 +12,7 @@ import TaxesIcon from "../Assets/Images/TaxesIcon";
 import ClothingIcon from "../Assets/Images/ClothingIcon";
 import MedicalIcon from "../Assets/Images/MedicalIcon";
 import HousingIcon from "../Assets/Images/HousingIcon";
+import EducationIcon from "../Assets/Images/EducationIcon";
 const localTimezone = localStorage.getItem("timezone");
 export const TransactionTypeArray = ["Expense", "Income"];
 
@@ -22,7 +23,7 @@ export const DateFilterArray = [
   "Last 12 Months",
   "Today",
   "Yesterday",
-  "Tomorrow",  
+  "Tomorrow",
   "Last 28 Days",
   "Last 90 Days",
   "Last Calendar Year",
@@ -51,7 +52,7 @@ export const TransactionCategoryArray = [
 export const commonservices = {
   fnCheckValidationOfObject,
   getItem,
-  getColorCode,getColorIcon,
+  getColorCode, getColorIcon,
   getDaysName,
   createGuid,
   NewUTCFormat,
@@ -117,7 +118,7 @@ function getColorCode(item) {
       return "#EC7063"; // Light Red
     } else if (item === "Housing") {
       return "#52BE80"; // Caribbean Green
-    } else if (item === "Travel") {
+    } else if (item === "Education") {
       return "#58D68D"; // Light Green
     }
   }
@@ -125,33 +126,35 @@ function getColorCode(item) {
 function getColorIcon(item) {
   if (item !== null && item !== "" && item !== undefined) {
     if (item === "Food") {
-      return <FoodIcon/>; 
+      return <FoodIcon />;
     } else if (item === "Utilities") {
-      return <UtilitiesIcon/>; // Baby Blue Eyes
+      return <UtilitiesIcon />; // Baby Blue Eyes
     } else if (item === "Others") {
-      return <OthersIcon/>; // Naples Yellow
+      return <OthersIcon />; // Naples Yellow
     } else if (item === "Rent") {
-      return <RentIcon/>; // Silver Sand
+      return <RentIcon />; // Silver Sand
     } else if (item === "Bill") {
-      return <BillIcon/>; // Dark Terra Cotta
+      return <BillIcon />; // Dark Terra Cotta
     } else if (item === "Transportation") {
-      return <TransportationIcon/>; // Jordy Blue
+      return <TransportationIcon />; // Jordy Blue
     } else if (item === "Insurance") {
-      return <InsuranceIcon1/>; // Naples Yellow Crayola
+      return <InsuranceIcon1 />; // Naples Yellow Crayola
     } else if (item === "Shopping") {
-      return <ShopingIcon/>; // Salmon Pink
+      return <ShopingIcon />; // Salmon Pink
     } else if (item === "Entertainment") {
-      return <EntertainmentIcon/>; // Light Slate Blue
+      return <EntertainmentIcon />; // Light Slate Blue
     } else if (item === "Taxes") {
-      return <TaxesIcon/>; // Platinum
+      return <TaxesIcon />; // Platinum
     } else if (item === "Clothing") {
-      return <ClothingIcon/>; // Saffron
+      return <ClothingIcon />; // Saffron
     } else if (item === "Medical") {
-      return <MedicalIcon/>; // Light Red
+      return <MedicalIcon />; // Light Red
     } else if (item === "Housing") {
-      return <HousingIcon/>; // Caribbean Green
-    } else if (item === "Travel") {
-      return "#58D68D"; // Light Green
+      return <HousingIcon />; // Caribbean Green
+    } else if (item === "Education") {
+      return <EducationIcon />; // Light Green
+    } else {
+      return '₹'
     }
   }
 }
@@ -252,7 +255,7 @@ export function fnCheckValidationOfObject(obj) {
             if (
               obj.errors[objRules.FieldName] === "new_password" &&
               obj.errors[objRules.CompareFieldName] ===
-                "confirm_new_password" &&
+              "confirm_new_password" &&
               objRules.ValidationType.toLowerCase() === "comparefieldvalue"
             ) {
               // var mailformat = /^[0-9]*$/;

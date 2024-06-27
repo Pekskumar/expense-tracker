@@ -264,7 +264,7 @@ const Transations = () => {
           </div>
         )}
       </div>
-      <div className="my-3">
+      <div className="my-3 mb-5">
         {Loading ? (
          <Loader />
         ) : (
@@ -284,7 +284,7 @@ const Transations = () => {
                             {TLList[item]?.data.length > 0 &&
                               TLList[item]?.data.map((itemE, indexE) => (
                                 <tr key={indexE}>
-                                  <td className="width-300px tbl-title">
+                                  <td className="width-500px tbl-title">
                                     <span>{itemE?.type}</span>
                                     <p className="text-color m-0">
                                       {itemE?.title}
@@ -363,7 +363,7 @@ const Transations = () => {
                   </Row>
                 ))
             ) : (
-              <div className="text-center">
+              <div className="text-center nodata-img">
               <img src={Nodata} alt="nodata" />
               </div>
             )}

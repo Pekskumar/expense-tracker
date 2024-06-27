@@ -366,7 +366,7 @@ const AddEditTransactionsModal = (props) => {
               <Form.Control
                 type="password"
                 placeholder="*****"
-                maxLength={6}
+                maxLength={10}
                 value={input.password}
                 onChange={(e) =>
                   setInput({

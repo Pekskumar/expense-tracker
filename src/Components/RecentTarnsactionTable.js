@@ -14,7 +14,7 @@ const RecentTarnsactionTable = (props) => {
                 <tr>
                   <th>Date</th>
                   <th>Title</th>
-                  <th>Category</th>
+                  {/* <th>Category</th> */}
                   <th>Payment Mode</th>
                   <th>Amount</th>
                 </tr>
@@ -25,12 +25,12 @@ const RecentTarnsactionTable = (props) => {
                     (item, index) =>
                       index < 5 && (
                         <tr key={item} className="expense-detail-one">
-                          <td className="width-300px">
+                          <td className="width-500px">
                             {moment(item?.date).format("DD/MM/yyyy")} (
                             {moment(item?.date).fromNow()})
                           </td>
                           <td className="width-300px">{item?.title}</td>
-                          <td className="width-300px">{item?.category}</td>
+                          {/* <td className="width-300px">{item?.category}</td> */}
                           <td className="width-300px">{item?.paymentMode}</td>
                           <td>₹ {item?.amount}</td>
                         </tr>

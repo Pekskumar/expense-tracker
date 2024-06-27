@@ -85,7 +85,7 @@
 //             <Form.Control
 //               type="password"
 //               placeholder="*****"
-//               maxLength={6}
+//               maxLength={10}
 //               value={input.password}
 //               onChange={(e) =>
 //                 setInput({
@@ -106,7 +106,7 @@
 //             <Form.Control
 //               type="password"
 //               placeholder="*****"
-//               maxLength={6}
+//               maxLength={10}
 //               value={input.password}
 //               onChange={(e) =>
 //                 setInput({
@@ -127,7 +127,7 @@
 //             <Form.Control
 //               type="password"
 //               placeholder="*****"
-//               maxLength={6}
+//               maxLength={10}
 //               value={input.password}
 //               onChange={(e) =>
 //                 setInput({
@@ -245,8 +245,8 @@ const ChangePasswordModal = (props) => {
               <Form.Label>Old Password</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Enter only 6 digit or number"
-                maxLength={6}
+                placeholder="maximum 10 digit or number"
+                maxLength={10}
                 value={input.oldPassword}
                 onChange={(e) =>
                   setInput({
@@ -269,8 +269,8 @@ const ChangePasswordModal = (props) => {
               <Form.Label>New Password</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Enter only 6 digit or number"
-                maxLength={6}
+                placeholder="maximum 10 digit or number"
+                maxLength={10}
                 value={input.newPassword}
                 onChange={(e) =>
                   setInput({
@@ -293,8 +293,8 @@ const ChangePasswordModal = (props) => {
               <Form.Label>Confirm New Password</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Enter only 6 digit or number"
-                maxLength={6}
+                placeholder="maximum 10 digit or number"
+                maxLength={10}
                 value={input.confirmNewPassword}
                 onChange={(e) =>
                   setInput({
