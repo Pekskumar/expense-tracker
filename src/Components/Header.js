@@ -18,12 +18,9 @@ console.log("UserData",UserData);
 console.log('====================================');
   let dispatch = useDispatch();
   function fnLogout() {
-    dispatch(userInfo([]));
-    dispatch(userToken(''));    
-    localStorage.clear();
-    
-   
-    // dispatch(userInfo());
+    dispatch(userInfo(null));
+    dispatch(userToken(null));    
+    localStorage.clear();    
   }
   return (
     <header>
