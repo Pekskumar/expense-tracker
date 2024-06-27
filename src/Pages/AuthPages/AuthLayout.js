@@ -13,7 +13,7 @@ const AuthLayout = () => {
         <div className="login-right">
 
           <div className="w-100">
-            <div className="text-center pb-3 d-flex
+            <div className="text-center pb-5 d-flex
     justify-content-center
     align-items-center">
               <img src={Logo1} style={{ height: "50px", width: "50px" }} />
