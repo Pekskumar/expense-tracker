@@ -17,6 +17,7 @@ const localTimezone = localStorage.getItem("timezone");
 export const TransactionTypeArray = ["Expense", "Income"];
 
 export const DateFilterArray = [
+  'Select Date Range',
   "Last 7 Days",
   "All time (Till - Today)",
   "Last 30 Days",
@@ -28,9 +29,9 @@ export const DateFilterArray = [
   "Last 90 Days",
   "Last Calendar Year",
   "This Year (January - Today)",
-
   "Custom",
 ];
+export const StatusArray = ["Incomplete","Complete" ];
 export const PaymentModeArray = ["Cash", "Online", "Debit Card", "Credit Card"];
 export const TransactionCategoryArray = [
   "Others",

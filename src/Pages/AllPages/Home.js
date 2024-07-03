@@ -32,10 +32,12 @@ const Home = () => {
     expenses: 0,
     balance: 0,
     transactions: 0,
+    users: 0,
+    todoCount: 0
   });
   const [StartEndDate, setStartEndDate] = useState({
-    startdate: new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000),
-    enddate: new Date(),
+    startdate: null,
+    enddate: null,
   });
   const [dates, setDates] = useState([
     moment().format("YYYY/MM/DD"),
@@ -60,19 +62,20 @@ const Home = () => {
     );
     let response = apiResponse(false, resData, setLoading);
     if (response?.isValidate) {
-      let temp = response?.data?.data?.filter(
-        (f) =>
+      let temp;
+      if (StartEndDate.startdate && StartEndDate.enddate) {
+        temp = response?.data?.data?.filter((f) =>
           moment(f.date).isBetween(
             StartEndDate.startdate,
             StartEndDate.enddate,
             "day",
             "[]"
-          ) // Today included
-      );
-      setRecentTransactionList(response?.data?.data);
-      // response?.data?.data.forEach(element => {
-      //   let totalbalance += element?.amount
-      // });
+          )
+        );
+      } else {
+        temp = response?.data?.data;
+      }
+      setRecentTransactionList(temp);
       let totalincomes = 0;
       let totalexpenses = 0;
       temp.forEach((element) => {
@@ -82,13 +85,14 @@ const Home = () => {
           totalexpenses += element?.amount;
         }
       });
-      setTotalCounts({
-        ...TotalCounts,
+
+      setTotalCounts((prevState) => ({
+        ...prevState,
         transactions: temp?.length,
         income: totalincomes,
         expenses: totalexpenses,
         balance: totalincomes - totalexpenses,
-      });
+      }));
 
       let catPieObj = {};
       temp.forEach((element) => {
@@ -126,6 +130,60 @@ const Home = () => {
     }
   }
 
+  async function UserList() {
+    
+    let body = {
+      userId:
+        UserData?.createdBy !== null ? UserData?.createdBy : UserData?._id,
+    };
+    let resData = await apiCall(
+      {
+        method: "POST",
+        url: API_URL.BASEURL + API_URL.USERS,
+        body: body,
+      },
+      false
+    );
+    let response = apiResponse(false, resData);
+    if (response?.isValidate) {
+      setTotalCounts((prevState) => ({
+        ...prevState,
+        users: response?.data?.data?.length,
+      }));
+      console.log("response?.data?.data?.length", response?.data?.data?.length);
+    }
+    if (!response?.isValidate) {
+      console.log("Error  getting country list", response);
+    }
+  }
+
+  async function ToDoList() {
+    
+    let body = {
+      userId:
+        UserData?.createdBy !== null ? UserData?.createdBy : UserData?._id,
+    };
+    let resData = await apiCall(
+      {
+        method: "POST",
+        url: API_URL.BASEURL + API_URL.TODOLIST,
+        body: body,
+      },
+      false
+    );
+    let response = apiResponse(false, resData);
+    if (response?.isValidate) {
+      let temp = response?.data?.data?.filter((f) => f.status === "Incomplete")
+      setTotalCounts((prevState) => ({
+        ...prevState,
+        todoCount: temp?.length,
+      }));
+
+    }
+    if (!response?.isValidate) {
+      console.log("Error  getting country list", response);
+    }
+  }
   function HandleDateChangeFilter(event) {
     setDatePickShow(false);
     // setSelectedDateFilter(event);
@@ -175,11 +233,13 @@ const Home = () => {
       enddate,
     });
   }
-
+  useEffect(() => {
+    UserList()
+    ToDoList()
+  }, []);
   useEffect(() => {
     bindList();
   }, [StartEndDate]);
-
   return (
     <>
       <div className="d-flex justify-content-between align-items-center">
@@ -223,7 +283,7 @@ const Home = () => {
         </div>
       </div>
       <div className="pt-3">
-        <CardCountComponent data={TotalCounts} />
+        <CardCountComponent Loading={Loading} data={TotalCounts} />
       </div>
       <div className="cardcount-body p-4 mb-3">
         <h5>Total Expenses</h5>
@@ -269,7 +329,6 @@ const Home = () => {
         <Col md={12}>
           <div className="cardcount-body p-4">
             <h5>Recent Transaction</h5>
-            {/* <RecentTarnsactionTable data={RecentTransactionList} /> */}
             {Loading ? (
               <Loader />
             ) : RecentTransactionList?.length > 0 ? (

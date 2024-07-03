@@ -1,7 +1,7 @@
 import * as React from "react";
 const BalanceIcon = (props) => (
   <svg
-    fill="#404acb"
+    fill="#388e3c"
     width="32px"
     height="32px"
     viewBox="0 0 24 24"

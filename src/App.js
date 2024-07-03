@@ -12,6 +12,8 @@ import Layout from "./Pages/AllPages/Layout";
 import { Suspense } from "react";
 import Transations from "./Pages/AllPages/Transations";
 import Home from "./Pages/AllPages/Home";
+import Users from "./Pages/AllPages/Users";
+import Todos from "./Pages/AllPages/Todos";
 
 function App() {
   const Token = useSelector((state) => state.userinfo.Token);
@@ -39,7 +41,24 @@ function App() {
             </Suspense>
           }
         />
-      </Route>
+      
+      <Route
+          path="/users"
+          element={
+            <Suspense fallback={"Loader..."}>
+              <Users />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/todos"
+          element={
+            <Suspense fallback={"Loader..."}>
+              <Todos />
+            </Suspense>
+          }
+        />
+        </Route>
      
     </Routes>
   );

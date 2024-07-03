@@ -4,7 +4,7 @@ import Logo from "../Assets/Images/Logo";
 import Logo1 from "../Assets/Images/Logo12.png";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { userInfo, userToken } from "../ReduxTookit/UserInfoSlice";
@@ -13,9 +13,8 @@ import ChangePasswordModal from "../Modals/ChangePasswordModal";
 const Header = () => {
   const UserData = useSelector((state) => state.userinfo.UserInfo);
   const [ChangePWDModalShow, setChangePWDModalShow] = useState(false);
-console.log('====================================');
-console.log("UserData",UserData);
-console.log('====================================');
+  let navigate = useNavigate();
+
   let dispatch = useDispatch();
   function fnLogout() {
     dispatch(userInfo(null));
@@ -32,7 +31,7 @@ console.log('====================================');
           </Navbar.Brand>
           <div className="d-flex align-items-center ml-auto">
             <Nav className="main-menu mr-3 me-2">
-              <Nav.Link as={NavLink} to="/home">
+              <Nav.Link as={NavLink} to="/home" className="">
                 Home
               </Nav.Link>
               <Nav.Link as={NavLink} to="/transactions">
@@ -52,9 +51,23 @@ console.log('====================================');
                   </div>
                 </Dropdown.Toggle>
 
+                {/* <Dropdown.Menu>
+                  <Dropdown.Item onClick={() => setChangePWDModalShow(true)}>
+                    Change Password
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={() => fnLogout()}>
+                    Log Out
+                  </Dropdown.Item>
+                </Dropdown.Menu> */}
                 <Dropdown.Menu>
                   <Dropdown.Item onClick={() => setChangePWDModalShow(true)}>
                     Change Password
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={() => navigate("/users")}>
+                    User
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={() => navigate("/todos")}>
+                    To Do List
                   </Dropdown.Item>
                   <Dropdown.Item onClick={() => fnLogout()}>
                     Log Out

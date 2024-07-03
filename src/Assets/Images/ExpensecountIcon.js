@@ -3,7 +3,7 @@ const ExpensecountIcon = (props) => (
   <svg
     width="30px"
     height="30px"
-    fill="#404acb"
+    fill="#e64a19"
     viewBox="0 0 512 512"
     xmlns="http://www.w3.org/2000/svg"
     {...props}

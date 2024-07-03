@@ -1,7 +1,7 @@
 import * as React from "react";
 const IncomeIcon1 = (props) => (
   <svg
-    fill="#404acb"
+    fill="#0d47a1"
     width="30px"
     height="30px"
     viewBox="0 0 1024 1024"

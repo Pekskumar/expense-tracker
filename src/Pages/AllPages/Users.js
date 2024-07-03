@@ -22,10 +22,12 @@ import Nodata from "../../Assets/Images/Nodata.png";
 import FoodIcon from "../../Assets/Images/FoodIcon";
 import PlusIcon from "../../Assets/Images/PlusIcon";
 import Loader from "../../Components/Loader";
+import AddEditUserModal from "../../Modals/AddEditUserModal";
 
-const Transations = () => {
+const Users = () => {
   const UserData = useSelector((state) => state.userinfo.UserInfo);
-  const TLList = useSelector((state) => state.userinfo.TransactionList);
+  console.log("UserData ::", UserData);
+  // const TLList = useSelector((state) => state.userinfo.TransactionList);
 
   const [StartEndDate, setStartEndDate] = useState({
     startdate: new Date("1900-01-01"),
@@ -34,49 +36,39 @@ const Transations = () => {
   const tableRef = useRef();
   const dispatch = useDispatch();
   const [DatePickShow, setDatePickShow] = useState(false);
+  const [UserList, setUserList] = useState([]);
   const [dates, setDates] = useState([
     moment().format("YYYY/MM/DD"),
     moment().format("YYYY/MM/DD"),
   ]);
+  console.log("UserList ::", UserList);
   const [Loading, setLoading] = useState(false);
   const [TransactionMOdalShow, setTransactionMOdalShow] = useState(false);
   const [TransactionType, setTransactionType] = useState();
   const [SelectedTransactionData, setSelectedTransactionData] = useState();
   const [TransactionList, setTransactionList] = useState({});
-  const [FilterDataList, setFilterDataList] = useState([]);
 
   async function bindList() {
     setLoading(true);
     let body = {
-      userId: UserData?._id,
+      userId:
+        UserData?.createdBy !== null ? UserData?.createdBy : UserData?._id,
     };
     let resData = await apiCall(
       {
         method: "POST",
-        url: API_URL.BASEURL + API_URL.EXPENSESLIST,
+        url: API_URL.BASEURL + API_URL.USERS,
         body: body,
       },
       false
     );
     let response = apiResponse(false, resData, setLoading);
     if (response?.isValidate) {
-      setFilterDataList(response?.data?.data);
-      // let temp = response?.data?.data?.filter(
-      //   (f) =>
-      //     moment(f.date).isBetween(
-      //       StartEndDate.startdate,
-      //       StartEndDate.enddate,
-      //       "day",
-      //       "[]"
-      //     ) // Today included
-      // );
-
-      // console.log("temp ::", temp);
-
+      setUserList(response?.data?.data);
       let dateGrouping = {};
       response?.data?.data?.forEach((element) => {
-        if (element?.date) {
-          let date = commonservices.getDateInFormat(element?.date);
+        if (element?.createdAt) {
+          let date = commonservices.getDateInFormat(element?.createdAt);
           if (dateGrouping[date]) {
             dateGrouping[date].data = [
               ...dateGrouping[date].data,
@@ -90,8 +82,6 @@ const Transations = () => {
           }
         }
       });
-
-      dispatch(transactionList(dateGrouping));
       setTransactionList(dateGrouping);
     }
     if (!response?.isValidate) {
@@ -117,7 +107,7 @@ const Transations = () => {
     let resData = await apiCall(
       {
         method: "DELETE",
-        url: API_URL.BASEURL + API_URL.EXPENSES + `/${value?._id}`,
+        url: API_URL.BASEURL + API_URL.USERS + `/${value?._id}`,
         body: body,
       },
       false
@@ -204,26 +194,29 @@ const Transations = () => {
     }
   }
   // commonservices.getDaysName();
+  console.log("transactionList ::", transactionList);
   return (
     <>
       <div>
         <div className="d-flex justify-content-between align-items-center">
-          <h4>All Transactions</h4>
-          <div className="d-flex align-items-center">
-            <div
-              onClick={() => fnAddEditTransactions("New", null)}
-              className="filter-btn me-2"
-            >
-              <PlusIcon />
-            </div>
-            <OffCanvasExample
+          <h4>All Users</h4>
+          {UserData?.usertype !== "client" && (
+            <div className="d-flex align-items-center">
+              <div
+                onClick={() => fnAddEditTransactions("New", null)}
+                className="filter-btn me-2"
+              >
+                <PlusIcon />
+              </div>
+              {/* <OffCanvasExample
               placement="end"
               name="Filter"
               data={FilterDataList}
               FilterData={setFilterDataList}
               bindList={bindList}
-            />
-          </div>
+            /> */}
+            </div>
+          )}
           {/* <div>
             <Form.Select
               onChange={(e) => HandleDateChangeFilter(e.target.value)}
@@ -264,13 +257,13 @@ const Transations = () => {
           </div>
         )}
       </div>
-      <div className="my-3 mb-5">
+      <div className="my-3">
         {Loading ? (
           <Loader />
         ) : (
           <>
-            {Object.keys(TLList)?.length > 0 ? (
-              Object.keys(TLList)
+            {Object.keys(TransactionList)?.length > 0 ? (
+              Object.keys(TransactionList)
                 ?.reverse()
                 .map((item, index) => (
                   <Row key={index}>
@@ -281,81 +274,90 @@ const Transations = () => {
                       <div className="expense-detail-one my-4">
                         <Table striped responsive className="m-0">
                           <tbody>
-                            {TLList[item]?.data.length > 0 &&
-                              TLList[item]?.data.map((itemE, indexE) => (
-                                <tr key={indexE}>
-                                  <td className="width-500px tbl-title">
-                                    <span>{itemE?.type}</span>
-                                    <p className="text-color m-0">
-                                      {itemE?.title}
-                                    </p>
-                                  </td>
-                                  <td className="width-300px">
-                                    <div className="d-flex    align-items-center">
-                                      <span
+                            {TransactionList[item]?.data.length > 0 &&
+                              TransactionList[item]?.data.map(
+                                (itemE, indexE) => (
+                                  <tr key={indexE}>
+                                    <td className="width-75px ">
+                                      <div
+                                        className="pro-img"
                                         style={{
-                                          backgroundColor:
-                                            commonservices.getColorCode(
-                                              itemE?.category
-                                            ),
-                                        }}
-                                        className="cat-icon me-2"
-                                      >
-                                        {commonservices.getColorIcon(
-                                          itemE?.category
-                                        )}
-                                      </span>
-                                      {itemE?.category}
-                                    </div>
-                                    {/* <p className="m-0">{itemE?.category}</p> */}
-                                  </td>
-                                  <td className="width-300px tbl-title">
-                                    {moment(itemE?.date).format("hh:mm A")}<br /> <span> (
-                                    {moment(itemE?.date).fromNow()})</span>
-                                  </td>
-                                  <td className="width-75px">
-                                    {itemE?.paymentMode}
-                                  </td>
-                                  <td className="width-300px">
-                                    {itemE?.description}
-                                  </td>
-                                  <td className="width-100px">
-                                    ₹ {itemE?.amount}
-                                  </td>
-                                  <td>
-                                    <div className="d-flex">
-                                      <span
-                                        onClick={() =>
-                                          fnAddEditTransactions("Edit", itemE)
-                                        }
-                                        className="me-2"
-                                      >
-                                        <EditIcon />
-                                      </span>
-                                      <span
-                                        onClick={() => {
-                                          confirmAlert({
-                                            title: "Confirm to submit",
-                                            message: "Are you sure to do this.",
-                                            buttons: [
-                                              {
-                                                label: "Yes",
-                                                onClick: () =>
-                                                  fnDeleteExpense(itemE),
-                                              },
-                                              {
-                                                label: "No",
-                                              },
-                                            ],
-                                          });
+                                          color: '#fff',
+                                          backgroundColor: `rgba(${Math.floor(
+                                            Math.random() * 256
+                                          )}, ${Math.floor(
+                                            Math.random() * 256
+                                          )}, ${Math.floor(
+                                            Math.random() * 256
+                                          )}, 0.6)`,
                                         }}
                                       >
-                                        <DeleteIcon />
-                                      </span>
-                                    </div>
-                                  </td>
-                                </tr>
-                              ))}
+                                        {itemE?.displayname[0]}
+                                      </div>
+                                    </td>
+                                    <td className="width-500px">
+                                      {itemE?.emailid}
+                                    </td>
+                                    <td className="width-500px tbl-title">
+                                      <p className="text-color m-0">
+                                        {itemE?.displayname}
+                                      </p>
+                                    </td>
+                                    <td className="width-500px">
+                                      {moment(itemE?.createdAt).format(
+                                        "hh:mm A"
+                                      )}{" "}
+                                      ({moment(itemE?.createdAt).fromNow()})
+                                    </td>
+
+                                    <td className="width-500px">
+                                      {itemE?.usertype === "admin"
+                                        ? "Administrator"
+                                        : "User"}
+                                    </td>
+                                    {UserData?.usertype !== "client" && (
+                                      <td className="width-500px">
+                                        <div className="d-flex     justify-content-end">
+                                          <span
+                                            onClick={() =>
+                                              fnAddEditTransactions(
+                                                "Edit",
+                                                itemE
+                                              )
+                                            }
+                                            className="me-2"
+                                          >
+                                            <EditIcon />
+                                          </span>
+                                          {UserData?._id !== itemE?._id && (
+                                            <span
+                                              onClick={() => {
+                                                confirmAlert({
+                                                  title: "Confirm to submit",
+                                                  message:
+                                                    "Are you sure to do this.",
+                                                  buttons: [
+                                                    {
+                                                      label: "Yes",
+                                                      onClick: () =>
+                                                        fnDeleteExpense(itemE),
+                                                    },
+                                                    {
+                                                      label: "No",
+                                                    },
+                                                  ],
+                                                });
+                                              }}
+                                            >
+                                              <DeleteIcon />
+                                            </span>
+                                          )}
+                                        </div>
+                                      </td>
+                                    )}
+                                  </tr>
+                                )
+                              )}
                           </tbody>
                         </Table>
                       </div>
@@ -371,9 +373,10 @@ const Transations = () => {
         )}
       </div>
       {TransactionMOdalShow && (
-        <AddEditTransactionsModal
+        <AddEditUserModal
           type={TransactionType}
           show={TransactionMOdalShow}
+          UserList={UserList}
           data={SelectedTransactionData}
           bindList={bindList}
           onHide={() => setTransactionMOdalShow(false)}
@@ -383,4 +386,4 @@ const Transations = () => {
   );
 };
 
-export default Transations;
+export default Users;
