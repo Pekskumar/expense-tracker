@@ -10,9 +10,6 @@ import { useSelector } from "react-redux";
 const ChangePasswordModal = (props) => {
   const UserData = useSelector((state) => state.userinfo.UserInfo);
 
-  console.log('====================================');
-  console.log("UserData",UserData);
-  console.log('====================================');
   const [Loading, setLoading] = useState(false);
 
   const [input, setInput] = useState({

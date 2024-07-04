@@ -50,12 +50,13 @@ const AddEditTransactionsModal = (props) => {
 
   useEffect(() => {
     if (props?.data) {
+      debugger
       setInput({
         ...input,
         ["userId"]: props?.data?.userId,
         ["title"]: props?.data?.title,
         ["amount"]: props?.data?.amount,
-        ["date"]: commonservices.getDateTimeFormat(props?.data?.date),
+        ["date"]: new Date(props?.data?.date),
         ["description"]: props?.data?.description,
         ["type"]: props?.data?.type,
         ["category"]: props?.data?.category,
@@ -104,6 +105,7 @@ const AddEditTransactionsModal = (props) => {
           type: input?.type,
           category: input?.category,
           paymentMode: input?.paymentMode,
+          createdBy:UserData?._id
         };
         resData = await apiCall(
           {

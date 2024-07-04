@@ -136,9 +136,9 @@ code {
   border-radius: 50%;
   cursor: pointer;
 }
-.btn-primary {
-  background-color:var(--primary-color);
-  border-color:var(--primary-color);
+.react-confirm-alert-button-group > button,.btn-primary {
+  background-color:var(--primary-color) !important;
+  border-color:var(--primary-color) !important;
 }
 .btn-primary:hover {
   background-color:var(--primary-color);

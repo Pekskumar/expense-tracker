@@ -48,7 +48,8 @@ const Transations = () => {
   async function bindList() {
     setLoading(true);
     let body = {
-      userId: UserData?._id,
+      userId:
+        UserData?.createdBy !== null ? UserData?.createdBy : UserData?._id,
     };
     let resData = await apiCall(
       {
@@ -210,12 +211,13 @@ const Transations = () => {
         <div className="d-flex justify-content-between align-items-center">
           <h4>All Transactions</h4>
           <div className="d-flex align-items-center">
-            <div
-              onClick={() => fnAddEditTransactions("New", null)}
-              className="filter-btn me-2"
-            >
-              <PlusIcon />
-            </div>
+            {UserData?.usertype !== "client" &&
+              <div
+                onClick={() => fnAddEditTransactions("New", null)}
+                className="filter-btn me-2"
+              >
+                <PlusIcon />
+              </div>}
             <OffCanvasExample
               placement="end"
               name="Filter"
@@ -224,20 +226,7 @@ const Transations = () => {
               bindList={bindList}
             />
           </div>
-          {/* <div>
-            <Form.Select
-              onChange={(e) => HandleDateChangeFilter(e.target.value)}
-              aria-label="Default select example"
-            >
-              {DateFilterArray.map((itemd, indexd) => (
-                <option key={indexd} value={itemd}>
-                  {itemd}
-                </option>
-              ))}
-            </Form.Select>
-          </div> */}
         </div>
-
         {DatePickShow && (
           <div>
             <DatePicker
@@ -311,7 +300,7 @@ const Transations = () => {
                                   </td>
                                   <td className="width-300px tbl-title">
                                     {moment(itemE?.date).format("hh:mm A")}<br /> <span> (
-                                    {moment(itemE?.date).fromNow()})</span>
+                                      {moment(itemE?.date).fromNow()})</span>
                                   </td>
                                   <td className="width-75px">
                                     {itemE?.paymentMode}
@@ -322,6 +311,7 @@ const Transations = () => {
                                   <td className="width-100px">
                                     ₹ {itemE?.amount}
                                   </td>
+                                  {UserData?.usertype !== "client" &&
                                   <td>
                                     <div className="d-flex">
                                       <span
@@ -335,8 +325,8 @@ const Transations = () => {
                                       <span
                                         onClick={() => {
                                           confirmAlert({
-                                            title: "Confirm to submit",
-                                            message: "Are you sure to do this.",
+                                            title: "Confirm to Delete?",
+                                            // message: "Are you sure to do this.",
                                             buttons: [
                                               {
                                                 label: "Yes",
@@ -353,7 +343,7 @@ const Transations = () => {
                                         <DeleteIcon />
                                       </span>
                                     </div>
-                                  </td>
+                                  </td>}
                                 </tr>
                               ))}
                           </tbody>

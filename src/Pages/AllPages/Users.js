@@ -26,9 +26,6 @@ import AddEditUserModal from "../../Modals/AddEditUserModal";
 
 const Users = () => {
   const UserData = useSelector((state) => state.userinfo.UserInfo);
-  console.log("UserData ::", UserData);
-  // const TLList = useSelector((state) => state.userinfo.TransactionList);
-
   const [StartEndDate, setStartEndDate] = useState({
     startdate: new Date("1900-01-01"),
     enddate: new Date(),
@@ -41,7 +38,7 @@ const Users = () => {
     moment().format("YYYY/MM/DD"),
     moment().format("YYYY/MM/DD"),
   ]);
-  console.log("UserList ::", UserList);
+  
   const [Loading, setLoading] = useState(false);
   const [TransactionMOdalShow, setTransactionMOdalShow] = useState(false);
   const [TransactionType, setTransactionType] = useState();
@@ -193,8 +190,7 @@ const Users = () => {
       setDatePickShow(true);
     }
   }
-  // commonservices.getDaysName();
-  console.log("transactionList ::", transactionList);
+  
   return (
     <>
       <div>
@@ -303,22 +299,26 @@ const Users = () => {
                                         {itemE?.displayname}
                                       </p>
                                     </td>
-                                    <td className="width-500px">
+                                    {/* <td className="width-500px">
                                       {moment(itemE?.createdAt).format(
                                         "hh:mm A"
                                       )}{" "}
                                       ({moment(itemE?.createdAt).fromNow()})
-                                    </td>
+                                    </td> */}
+                                    <td className="width-300px tbl-title">
+                                    {moment(itemE?.createdAt).format("hh:mm A")}<br /> <span> (
+                                      {moment(itemE?.createdAt).fromNow()})</span>
+                                  </td>
 
-                                    <td className="width-500px">
+                                    <td className="width-500px text-center">
                                       {itemE?.usertype === "admin"
                                         ? "Administrator"
                                         : "User"}
                                     </td>
-                                    {UserData?.usertype !== "client" && (
+                                    {UserData?.usertype !== "client" && itemE?.createdBy !== null && (
                                       <td className="width-500px">
                                         <div className="d-flex     justify-content-end">
-                                          <span
+                                          {/* <span
                                             onClick={() =>
                                               fnAddEditTransactions(
                                                 "Edit",
@@ -328,30 +328,28 @@ const Users = () => {
                                             className="me-2"
                                           >
                                             <EditIcon />
+                                          </span> */}
+                                          <span
+                                            onClick={() => {
+                                              confirmAlert({
+                                                title: "Confirm to Delete?",
+                                                // message:
+                                                //   "Are you sure to do this.",
+                                                buttons: [
+                                                  {
+                                                    label: "Yes",
+                                                    onClick: () =>
+                                                      fnDeleteExpense(itemE),
+                                                  },
+                                                  {
+                                                    label: "No",
+                                                  },
+                                                ],
+                                              });
+                                            }}
+                                          >
+                                            <DeleteIcon />
                                           </span>
-                                          {UserData?._id !== itemE?._id && (
-                                            <span
-                                              onClick={() => {
-                                                confirmAlert({
-                                                  title: "Confirm to submit",
-                                                  message:
-                                                    "Are you sure to do this.",
-                                                  buttons: [
-                                                    {
-                                                      label: "Yes",
-                                                      onClick: () =>
-                                                        fnDeleteExpense(itemE),
-                                                    },
-                                                    {
-                                                      label: "No",
-                                                    },
-                                                  ],
-                                                });
-                                              }}
-                                            >
-                                              <DeleteIcon />
-                                            </span>
-                                          )}
                                         </div>
                                       </td>
                                     )}

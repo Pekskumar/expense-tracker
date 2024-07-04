@@ -73,7 +73,6 @@ const AddEditUserModal = (props) => {
     if (existingEmail?.length > 0) {
       return toast.error('User Already exist.')
     }
-    debugger;
     if (obj.isValid) {
       setLoading(true);
       let resData = "";
@@ -179,8 +178,8 @@ const AddEditUserModal = (props) => {
               <Form.Control
                 type="password"
                 disabled={props?.type === "Edit"}
-                placeholder="Enter only 6 digit or number"
-                maxLength={6}
+                placeholder="Enter only 10 digit or number"
+                maxLength={10}
                 value={input.password}
                 onChange={(e) =>
                   setInput({
@@ -205,7 +204,7 @@ const AddEditUserModal = (props) => {
                 ? "Loading..."
                 : props?.type === "Edit"
                 ? "Edit User"
-                : "Sign Up"}
+                : "New User"}
             </Button>
           </Form>
         </Modal.Body>

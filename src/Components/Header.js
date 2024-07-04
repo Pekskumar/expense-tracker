@@ -31,7 +31,7 @@ const Header = () => {
           </Navbar.Brand>
           <div className="d-flex align-items-center ml-auto">
             <Nav className="main-menu mr-3 me-2">
-              <Nav.Link as={NavLink} to="/home" className="">
+              <Nav.Link as={NavLink} to="/home" className="pe-0">
                 Home
               </Nav.Link>
               <Nav.Link as={NavLink} to="/transactions">
@@ -64,7 +64,7 @@ const Header = () => {
                     Change Password
                   </Dropdown.Item>
                   <Dropdown.Item onClick={() => navigate("/users")}>
-                    User
+                    Users
                   </Dropdown.Item>
                   <Dropdown.Item onClick={() => navigate("/todos")}>
                     To Do List

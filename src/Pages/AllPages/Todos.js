@@ -28,8 +28,7 @@ import AddEditTodoModal from "../../Modals/AddEditTodoModal";
 
 const Todos = () => {
   const UserData = useSelector((state) => state.userinfo.UserInfo);
-  console.log("UserData ::", UserData);
-  // const TLList = useSelector((state) => state.userinfo.TransactionList);
+  
 
   const [StartEndDate, setStartEndDate] = useState({
     startdate: new Date("1900-01-01"),
@@ -43,7 +42,7 @@ const Todos = () => {
     moment().format("YYYY/MM/DD"),
     moment().format("YYYY/MM/DD"),
   ]);
-  console.log("UserList ::", UserList);
+  
   const [Loading, setLoading] = useState(false);
   const [TransactionMOdalShow, setTransactionMOdalShow] = useState(false);
   const [TransactionType, setTransactionType] = useState();
@@ -171,7 +170,7 @@ const Todos = () => {
     bindList(value);
   }
 
-  console.log("UserList ::", UserList);
+  
   return (
     <>
       <div>
@@ -280,9 +279,8 @@ const Todos = () => {
                                             <span
                                               onClick={() => {
                                                 confirmAlert({
-                                                  title: "Confirm to submit",
-                                                  message:
-                                                    "Are you sure to do this.",
+                                                  title: "Confirm to Delete?",
+                                                  // message: "Are you sure to do this.",
                                                   buttons: [
                                                     {
                                                       label: "Yes",

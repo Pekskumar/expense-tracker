@@ -50,7 +50,8 @@ const Home = () => {
   async function bindList() {
     setLoading(true);
     let body = {
-      userId: UserData?._id,
+      userId:
+        UserData?.createdBy !== null ? UserData?.createdBy : UserData?._id,
     };
     let resData = await apiCall(
       {
@@ -131,7 +132,7 @@ const Home = () => {
   }
 
   async function UserList() {
-    
+
     let body = {
       userId:
         UserData?.createdBy !== null ? UserData?.createdBy : UserData?._id,
@@ -150,7 +151,7 @@ const Home = () => {
         ...prevState,
         users: response?.data?.data?.length,
       }));
-      console.log("response?.data?.data?.length", response?.data?.data?.length);
+
     }
     if (!response?.isValidate) {
       console.log("Error  getting country list", response);
@@ -158,7 +159,7 @@ const Home = () => {
   }
 
   async function ToDoList() {
-    
+
     let body = {
       userId:
         UserData?.createdBy !== null ? UserData?.createdBy : UserData?._id,

@@ -75,7 +75,6 @@ const AddEditTodoModal = (props) => {
         description: input.description.trim(),
         status: input.status,
       };
-      debugger
       if (props?.type === "Edit") {
         resData = await apiCall(
           {
