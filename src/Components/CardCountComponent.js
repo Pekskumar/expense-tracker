@@ -17,7 +17,7 @@ const CardCountComponent = (props) => {
         <Col md={4} className="mb-3">
           <div onClick={() => navigate('/transactions')} style={{ background: '#bbdefb' }} className="cardcount-body p-4 d-flex justify-content-between">
             <div style={{ color: '#0d47a1' }}>
-              <h4>₹ {true ? <Loader /> : props?.data?.income}</h4>
+              <h4>₹ {props?.Loading ? <Loader /> : props?.data?.income}</h4>
               <span>Income</span>
             </div>
             <IncomeIcon1 />

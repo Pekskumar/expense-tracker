@@ -289,7 +289,7 @@ const Home = () => {
       </div>
       <div className="cardcount-body p-4 mb-3">
         <h5>Total Expenses</h5>
-        {true ? (
+        {Loading ? (
           <NewLoader />
         ) : Object.keys(CategoryObject)?.length > 0 ? (
           <DoughnutChart data={CategoryObject} />
