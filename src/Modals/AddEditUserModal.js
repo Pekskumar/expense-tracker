@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { apiResponse } from "../Common Service/APIResponse";
 import { API_URL } from "../Common Service/APIRoute";
 import { apiCall } from "../Common Service/AxiosService";
+import toast, { Toaster } from 'react-hot-toast';
 import {
   PaymentModeArray,
   TransactionCategoryArray,
@@ -11,7 +12,7 @@ import {
   commonservices,
 } from "../Common Service/CommonServices";
 import { userInfo, userToken } from "../ReduxTookit/UserInfoSlice";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 
 const AddEditUserModal = (props) => {
   const UserData = useSelector((state) => state.userinfo.UserInfo);

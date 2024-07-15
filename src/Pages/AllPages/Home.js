@@ -19,6 +19,7 @@ import GradientLineChart from "../../Components/GradientLineChart";
 import BarchartComponent from "../../Components/BarchartComponent";
 import RecentTarnsactionTable from "../../Components/RecentTarnsactionTable";
 import Loader from "../../Components/Loader";
+import NewLoader from "../../Components/NewLoader";
 
 const Home = () => {
   const [DatePickShow, setDatePickShow] = useState(false);
@@ -288,8 +289,8 @@ const Home = () => {
       </div>
       <div className="cardcount-body p-4 mb-3">
         <h5>Total Expenses</h5>
-        {Loading ? (
-          <Loader />
+        {true ? (
+          <NewLoader />
         ) : Object.keys(CategoryObject)?.length > 0 ? (
           <DoughnutChart data={CategoryObject} />
         ) : (
@@ -303,7 +304,7 @@ const Home = () => {
           <div className="cardcount-body p-4">
             <h5>Account Balance</h5>
             {Loading ? (
-              <Loader />
+               <NewLoader />
             ) : Object.keys(BarchartObject)?.length > 0 ? (
               <GradientLineChart data={BarchartObject} />
             ) : (
@@ -317,7 +318,7 @@ const Home = () => {
           <div className="cardcount-body p-4">
             <h5>Expenses - Income</h5>
             {Loading ? (
-              <Loader />
+               <NewLoader />
             ) : Object.keys(BarchartObject)?.length > 0 ? (
               <BarchartComponent data={BarchartObject} />
             ) : (
@@ -331,7 +332,7 @@ const Home = () => {
           <div className="cardcount-body p-4">
             <h5>Recent Transaction</h5>
             {Loading ? (
-              <Loader />
+               <NewLoader />
             ) : RecentTransactionList?.length > 0 ? (
               <RecentTarnsactionTable data={RecentTransactionList} />
             ) : (

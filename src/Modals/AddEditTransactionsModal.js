@@ -221,7 +221,7 @@ const AddEditTransactionsModal = (props) => {
                 >
                   <Form.Label>Enter Amount</Form.Label>
                   <Form.Control
-                    type="text"
+                    type="number"
                     placeholder="₹"
                     maxLength={146}
                     value={input.amount}

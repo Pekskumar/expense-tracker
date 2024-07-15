@@ -22,6 +22,7 @@ import Nodata from "../../Assets/Images/Nodata.png";
 import FoodIcon from "../../Assets/Images/FoodIcon";
 import PlusIcon from "../../Assets/Images/PlusIcon";
 import Loader from "../../Components/Loader";
+import NewLoader from "../../Components/NewLoader";
 
 const Transations = () => {
   const UserData = useSelector((state) => state.userinfo.UserInfo);
@@ -61,18 +62,7 @@ const Transations = () => {
     );
     let response = apiResponse(false, resData, setLoading);
     if (response?.isValidate) {
-      setFilterDataList(response?.data?.data);
-      // let temp = response?.data?.data?.filter(
-      //   (f) =>
-      //     moment(f.date).isBetween(
-      //       StartEndDate.startdate,
-      //       StartEndDate.enddate,
-      //       "day",
-      //       "[]"
-      //     ) // Today included
-      // );
-
-      // console.log("temp ::", temp);
+      setFilterDataList(response?.data?.data);   
 
       let dateGrouping = {};
       response?.data?.data?.forEach((element) => {
@@ -255,11 +245,11 @@ const Transations = () => {
       </div>
       <div className="my-3 mb-5">
         {Loading ? (
-          <Loader />
+          <NewLoader/>
         ) : (
           <>
             {Object.keys(TLList)?.length > 0 ? (
-              Object.keys(TLList)
+              Object.keys(TLList)?.sort()
                 ?.reverse()
                 .map((item, index) => (
                   <Row key={index}>

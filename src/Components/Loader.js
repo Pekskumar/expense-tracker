@@ -3,7 +3,7 @@ import Spinner from 'react-bootstrap/Spinner';
 
 const Loader = () => {
   return (
-    <Spinner animation="grow" />
+    <Spinner animation="border"  />
   )
 }
 

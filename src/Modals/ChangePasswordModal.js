@@ -1,11 +1,12 @@
 import { default as React, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import { apiResponse } from "../Common Service/APIResponse";
 import { API_URL } from "../Common Service/APIRoute";
 import { apiCall } from "../Common Service/AxiosService";
 import { commonservices } from "../Common Service/CommonServices";
 import { useSelector } from "react-redux";
+import toast, { Toaster } from 'react-hot-toast';
 
 const ChangePasswordModal = (props) => {
   const UserData = useSelector((state) => state.userinfo.UserInfo);

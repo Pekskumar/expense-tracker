@@ -1,5 +1,5 @@
-import { toast } from "react-toastify";
-
+// import { toast } from "react-toastify";
+import toast, { Toaster } from 'react-hot-toast';
 export const apiResponse = (isMsgDisplay, data, setLoading) => {  
   if (data?.status_code === 0) {
     if (isMsgDisplay) {

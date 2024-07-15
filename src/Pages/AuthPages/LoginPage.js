@@ -74,7 +74,7 @@ const LoginPage = (props) => {
           <Form.Label>Email</Form.Label>
           <Form.Control
             type="text"
-            placeholder="email@example.com"
+            placeholder="Use your any email address"
             maxLength={146}
             value={input.emailid}
             onChange={(e) =>

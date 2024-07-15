@@ -4,7 +4,8 @@ import {
   BrowserRouter as Router,
   Routes,
 } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+// import { ToastContainer } from "react-toastify";
+import toast, { Toaster } from 'react-hot-toast';
 import AuthLayout from "./Pages/AuthPages/AuthLayout";
 import { useSelector } from "react-redux";
 import Dashboard from "./Pages/AllPages/Home";
@@ -73,7 +74,8 @@ function App() {
 
   return (
     <>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
+      <Toaster  position="bottom-center" />
       <Router basename={process.env.PUBLIC_URL}>{is_logged ? <AllRoutes /> : <AuthRoutes />}</Router>
     </>
   );

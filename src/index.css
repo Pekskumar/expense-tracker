@@ -140,6 +140,12 @@ code {
   background-color:var(--primary-color) !important;
   border-color:var(--primary-color) !important;
 }
+body .react-confirm-alert-body{
+  width: 300px;
+}
+body .react-confirm-alert-body > h1{
+  font-size: 1.5rem;
+}
 .btn-primary:hover {
   background-color:var(--primary-color);
   border-color:var(--primary-color);
@@ -337,6 +343,11 @@ body .css-13cymwt-control {
   justify-content: center;
   align-items: center;
 }
+body .spinner-border{
+  --bs-spinner-border-width: 0.17em;
+  --bs-spinner-width: 1.5rem;
+  --bs-spinner-height: 1.5rem;
+}
 .nodata-img {
   height: 250px;
   /* width: -webkit-fill-available; */
@@ -345,10 +356,46 @@ body .css-13cymwt-control {
   /* width: 100%; */
   height: -webkit-fill-available;
 }
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  display: grid;
+  border: 4px solid #0000;
+  border-radius: 50%;
+  border-color: #ccc #0000;
+  animation: l16 1s infinite linear;
+}
+.loader::before,
+.loader::after {    
+  content: "";
+  grid-area: 1/1;
+  margin: 2px;
+  border: inherit;
+  border-radius: 50%;
+}
+.loader::before {
+  border-color: var(--primary-color) #0000;
+  animation: inherit; 
+  animation-duration: .5s;
+  animation-direction: reverse;
+}
+.loader::after {
+  margin: 8px;
+}
+@keyframes l16 { 
+  100%{transform: rotate(1turn)}
+}
+
 @media only screen and (max-width: 1199px) {
 }
 
 @media only screen and (max-width: 768px) {
+  .lds-roller{
+    width: 40px;
+    height: 40px;
+  }
   /* .login-page{
     display: block;
   } */

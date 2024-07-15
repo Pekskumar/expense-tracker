@@ -12,7 +12,6 @@ import {
   commonservices,
 } from "../Common Service/CommonServices";
 import { userInfo, userToken } from "../ReduxTookit/UserInfoSlice";
-import { toast } from "react-toastify";
 
 const AddEditTodoModal = (props) => {
   const UserData = useSelector((state) => state.userinfo.UserInfo);
@@ -155,7 +154,7 @@ const AddEditTodoModal = (props) => {
                   className="mb-3"
                   controlId="exampleForm.ControlInput1"
                 >
-                  <Form.Label>description</Form.Label>
+                  <Form.Label>Description</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="description"

@@ -23,6 +23,7 @@ import FoodIcon from "../../Assets/Images/FoodIcon";
 import PlusIcon from "../../Assets/Images/PlusIcon";
 import Loader from "../../Components/Loader";
 import AddEditUserModal from "../../Modals/AddEditUserModal";
+import NewLoader from "../../Components/NewLoader";
 
 const Users = () => {
   const UserData = useSelector((state) => state.userinfo.UserInfo);
@@ -255,11 +256,11 @@ const Users = () => {
       </div>
       <div className="my-3">
         {Loading ? (
-          <Loader />
+          <NewLoader />
         ) : (
           <>
             {Object.keys(TransactionList)?.length > 0 ? (
-              Object.keys(TransactionList)
+              Object.keys(TransactionList)?.sort()
                 ?.reverse()
                 .map((item, index) => (
                   <Row key={index}>
@@ -294,11 +295,11 @@ const Users = () => {
                                     <td className="width-500px">
                                       {itemE?.emailid}
                                     </td>
-                                    <td className="width-500px tbl-title">
+                                    {/* <td className="width-500px tbl-title">
                                       <p className="text-color m-0">
                                         {itemE?.displayname}
                                       </p>
-                                    </td>
+                                    </td> */}
                                     {/* <td className="width-500px">
                                       {moment(itemE?.createdAt).format(
                                         "hh:mm A"
@@ -306,7 +307,7 @@ const Users = () => {
                                       ({moment(itemE?.createdAt).fromNow()})
                                     </td> */}
                                     <td className="width-300px tbl-title">
-                                    {moment(itemE?.createdAt).format("hh:mm A")}<br /> <span> (
+                                    {moment(itemE?.createdAt).format("hh:mm A")}<span> (
                                       {moment(itemE?.createdAt).fromNow()})</span>
                                   </td>
 

@@ -25,6 +25,7 @@ import PlusIcon from "../../Assets/Images/PlusIcon";
 import Loader from "../../Components/Loader";
 import AddEditUserModal from "../../Modals/AddEditUserModal";
 import AddEditTodoModal from "../../Modals/AddEditTodoModal";
+import NewLoader from "../../Components/NewLoader";
 
 const Todos = () => {
   const UserData = useSelector((state) => state.userinfo.UserInfo);
@@ -204,11 +205,11 @@ const Todos = () => {
       </div>
       <div className="my-3">
         {Loading ? (
-          <Loader />
+          <NewLoader />
         ) : (
           <>
             {Object.keys(TransactionList)?.length > 0 ? (
-              Object.keys(TransactionList)
+              Object.keys(TransactionList)?.sort()
                 ?.reverse()
                 .map((item, index) => (
                   <Row key={index}>

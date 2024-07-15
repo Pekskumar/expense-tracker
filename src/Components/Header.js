@@ -34,7 +34,7 @@ const Header = () => {
               <Nav.Link as={NavLink} to="/home" className="pe-0">
                 Home
               </Nav.Link>
-              <Nav.Link as={NavLink} to="/transactions">
+              <Nav.Link as={NavLink} to="/transactions" className="pe-1">
                 Transactions
               </Nav.Link>
             </Nav>

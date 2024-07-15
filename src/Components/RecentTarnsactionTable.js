@@ -16,7 +16,7 @@ const RecentTarnsactionTable = (props) => {
                   <th>Time</th>
 
                   {/* <th>Category</th> */}
-                  <th>Payment Mode</th>
+                  <th>Payment</th>
                   <th>Amount</th>
                 </tr>
               </thead>

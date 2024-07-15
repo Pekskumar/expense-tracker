@@ -16,8 +16,8 @@ const AuthLayout = () => {
             <div className="text-center pb-5 d-flex
     justify-content-center
     align-items-center">
-              <img src={Logo1} style={{ height: "50px", width: "50px" }} />
-              {/* <h5 className="mb-0 text-start">Expense <br/> Tracker</h5> */}
+              <img src={Logo1} style={{ height: "75px", width: "75px" }} />
+              <h6 className="mb-0 blue text-start">Expense <br/> To Do <br/> Users</h6>
             </div>
             {PageShowFlag ? (
               <SignUpPage data={setPageShowFlag} />
