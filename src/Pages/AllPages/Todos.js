@@ -209,9 +209,7 @@ const Todos = () => {
         ) : (
           <>
             {Object.keys(TransactionList)?.length > 0 ? (
-              Object.keys(TransactionList)?.sort()
-                ?.reverse()
-                .map((item, index) => (
+              Object.keys(TransactionList)?.map((item, index) => (
                   <Row key={index}>
                     <Col className="expense-detail">
                       <h5 className="box-title-color">

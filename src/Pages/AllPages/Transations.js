@@ -64,23 +64,41 @@ const Transations = () => {
     if (response?.isValidate) {
       setFilterDataList(response?.data?.data);   
 
+      // let dateGrouping = {};
+      // response?.data?.data?.forEach((element) => {
+      //   if (element?.date) {
+      //     let date = commonservices.getDateInFormat(element?.date);
+      //     if (dateGrouping[date]) {
+      //       dateGrouping[date].data = [
+      //         ...dateGrouping[date].data,
+      //         (dateGrouping[date].data = element),
+      //       ];
+      //     } else {
+      //       dateGrouping[date] = {
+      //         ...dateGrouping[date],
+      //         data: [element],
+      //       };
+      //     }
+      //   }
+      // });
       let dateGrouping = {};
-      response?.data?.data?.forEach((element) => {
-        if (element?.date) {
-          let date = commonservices.getDateInFormat(element?.date);
-          if (dateGrouping[date]) {
-            dateGrouping[date].data = [
-              ...dateGrouping[date].data,
-              (dateGrouping[date].data = element),
-            ];
-          } else {
-            dateGrouping[date] = {
-              ...dateGrouping[date],
-              data: [element],
-            };
-          }
+    response?.data?.data?.forEach((element) => {
+      if (element?.date) {
+        let date = commonservices.getDateInFormat(element?.date);
+        if (dateGrouping[date]) {
+          dateGrouping[date].data = [
+            ...dateGrouping[date].data,
+            (dateGrouping[date].data = element),
+          ];
+        } else {
+          dateGrouping[date] = {
+            ...dateGrouping[date],
+            data: [element],
+          };
         }
-      });
+      }
+    });
+
 
       dispatch(transactionList(dateGrouping));
       setTransactionList(dateGrouping);
@@ -249,8 +267,9 @@ const Transations = () => {
         ) : (
           <>
             {Object.keys(TLList)?.length > 0 ? (
-              Object.keys(TLList)?.sort()
-                ?.reverse()
+              Object.keys(TLList)
+              // ?.sort()
+              //   ?.reverse()
                 .map((item, index) => (
                   <Row key={index}>
                     <Col className="expense-detail">

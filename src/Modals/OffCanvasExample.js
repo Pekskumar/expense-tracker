@@ -51,13 +51,21 @@ function OffCanvasExample(props) {
   const handleToggle = () => setShow(!show);
   function HandleDateChangeFilter(event) {
     setDatePickShow(false);
-    setSelectedDateFilter(event);
+    // setSelectedDateFilter(event);
 
     const now = new Date();
     let startdate = null;
     let enddate = new Date(now);
 
-    if (event === "Last 7 Days") {
+    if (event === "Last 2 Days") {
+      startdate = new Date(now.getTime() - 2 * 24 * 60 * 60 * 1000);
+    } else if (event === "Last 3 Days") {
+      startdate = new Date(now.getTime() - 3 * 24 * 60 * 60 * 1000);
+    } else if (event === "Last 5 Days") {
+      startdate = new Date(now.getTime() - 5 * 24 * 60 * 60 * 1000);
+    } else if (event === "Last 10 Days") {
+      startdate = new Date(now.getTime() - 10 * 24 * 60 * 60 * 1000);
+    } else if (event === "Last 7 Days") {
       startdate = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
     } else if (event === "Last 28 Days") {
       startdate = new Date(now.getTime() - 28 * 24 * 60 * 60 * 1000);
