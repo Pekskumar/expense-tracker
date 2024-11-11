@@ -15,6 +15,8 @@ import Transations from "./Pages/AllPages/Transations";
 import Home from "./Pages/AllPages/Home";
 import Users from "./Pages/AllPages/Users";
 import Todos from "./Pages/AllPages/Todos";
+import ResetPassword from "./Pages/AuthPages/ResetPassword";
+import ForgotPassword from "./Pages/AuthPages/ForgotPassword";
 
 function App() {
   const Token = useSelector((state) => state.userinfo.Token);
@@ -64,14 +66,23 @@ function App() {
     </Routes>
   );
 
+  // const AuthRoutes = () => (
+  //   <Routes >
+  //     <Route path="*" element={<Navigate to="/" />} />
+  //     <Route path="/" element={<AuthLayout />} />
+      
+  //   </Routes>
+  // );
+
   const AuthRoutes = () => (
-    <Routes >
+    <Routes>
       <Route path="*" element={<Navigate to="/" />} />
       <Route path="/" element={<AuthLayout />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
       
     </Routes>
   );
-
   return (
     <>
       {/* <ToastContainer /> */}

@@ -388,6 +388,29 @@ body .spinner-border{
   100%{transform: rotate(1turn)}
 }
 
+.file-input {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.file-input__label img {
+  border-radius: 50%;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+.file-input__label {
+  background: #fff;
+  border: 1px solid #cad3e0;
+  border-radius: 5px;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  height: 60px;
+  width: 60px;
+}
 @media only screen and (max-width: 1199px) {
 }
 

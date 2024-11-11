@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Logo from "../Assets/Images/Logo";
 import Logo1 from "../Assets/Images/Logo12.png";
+import UserPlaceholder from "../Assets/Images/userimages.jpg";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -12,6 +13,8 @@ import ChangePasswordModal from "../Modals/ChangePasswordModal";
 
 const Header = () => {
   const UserData = useSelector((state) => state.userinfo.UserInfo);
+  console.log("UserData ::",UserData);
+  
   const [ChangePWDModalShow, setChangePWDModalShow] = useState(false);
   let navigate = useNavigate();
 
@@ -41,14 +44,27 @@ const Header = () => {
             <div className="header-right">
               <Dropdown>
                 <Dropdown.Toggle id="dropdown-basic">
-                  <div
+                  {/* <div
                     className="pro-img me-1"
                     style={{
                       backgroundColor: `#404acb`,
                     }}
                   >
                     {UserData && UserData !== '' && UserData?.displayname && UserData?.displayname[0]}
-                  </div>
+                  </div> */}
+                  <img
+                    src={
+                      UserData?.profilepic !== ""
+                        ? UserData?.profilepic
+                        : UserPlaceholder
+                    }
+                    onError={({ currentTarget }) => {
+                      currentTarget.onerror = null;
+                      currentTarget.src = UserPlaceholder;
+                    }}
+                    alt={UserData?.profilepic}
+                    className="pro-img me-1"
+                  />
                 </Dropdown.Toggle>
 
                 {/* <Dropdown.Menu>

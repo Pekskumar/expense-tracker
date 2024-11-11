@@ -7,9 +7,11 @@ import { API_URL } from "../../Common Service/APIRoute";
 import { apiCall } from "../../Common Service/AxiosService";
 import { commonservices } from "../../Common Service/CommonServices";
 import { userInfo, userToken } from "../../ReduxTookit/UserInfoSlice";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = (props) => {
   let dispatch = useDispatch();
+  let navigate = useNavigate()
   const [Loading, setLoading] = useState(false);
   const [input, setInput] = useState({
     emailid: "",
@@ -112,6 +114,7 @@ const LoginPage = (props) => {
             </Form.Control.Feedback>
           )}
         </Form.Group>
+        <p onClick={(e)=>navigate('/reset-password')} class="m-0 text-end cursor-pointer">Forgot Password ?</p>
         <Button variant="primary w-100 my-4" disabled={Loading} type="submit">
           {Loading ? "Loading..." : "Login"}
         </Button>
