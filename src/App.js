@@ -1,10 +1,89 @@
+// import {
+//   Navigate,
+//   Route,
+//   BrowserRouter as Router,
+//   Routes,
+// } from "react-router-dom";
+// import { Suspense } from "react";
+// import { Toaster } from 'react-hot-toast';
+// import { useSelector } from "react-redux";
+// import Home from "./Pages/AllPages/Home";
+// import Layout from "./Pages/AllPages/Layout";
+// import Todos from "./Pages/AllPages/Todos";
+// import Transations from "./Pages/AllPages/Transations";
+// import Users from "./Pages/AllPages/Users";
+// import AuthLayout from "./Pages/AuthPages/AuthLayout";
+// import ForgotPassword from "./Pages/AuthPages/ForgotPassword";
+// import ResetPassword from "./Pages/AuthPages/ResetPassword";
+
+// function App() {
+//   const Token = useSelector((state) => state.userinfo.Token);
+//   const is_logged = Token !== null ? true : false;
+//   const AllRoutes = () => (
+//     <Routes>
+//       <Route path="*" element={<Navigate to="/" />} />
+//       <Route path="/" element={<Layout />}>
+//         <Route index element={<Navigate to="/home" replace />} />
+//         <Route
+//           path="/home"
+//           element={
+//             <Suspense fallback={"Loader..."}>
+//               <Home />
+//             </Suspense>
+//           }
+//         />
+//         <Route
+//           path="/transactions"
+//           element={
+//             <Suspense fallback={"Loader..."}>
+//               <Transations />
+//             </Suspense>
+//           }
+//         />
+
+//         <Route
+//           path="/users"
+//           element={
+//             <Suspense fallback={"Loader..."}>
+//               <Users />
+//             </Suspense>
+//           }
+//         />
+//         <Route
+//           path="/todos"
+//           element={
+//             <Suspense fallback={"Loader..."}>
+//               <Todos />
+//             </Suspense>
+//           }
+//         />
+//       </Route>
+
+//     </Routes>
+//   );
+//   const AuthRoutes = () => (
+//     <Routes>
+//       <Route path="*" element={<Navigate to="/" />} />
+//       <Route path="/" element={<AuthLayout />} />
+//       <Route path="/reset-password" element={<ResetPassword />} />
+//       <Route path="/forgot-password" element={<ForgotPassword />} />
+//     </Routes>
+//   );
+//   return (
+//     <>
+//       <Toaster position="bottom-center" />
+//       <Router basename={process.env.PUBLIC_URL}>{is_logged ? <AllRoutes /> : <AuthRoutes />}</Router>
+//     </>
+//   );
+// }
+
+// export default App;
 import {
   Navigate,
   Route,
-  BrowserRouter as Router,
+  HashRouter as Router, // Change to HashRouter
   Routes,
 } from "react-router-dom";
-// import { ToastContainer } from "react-toastify";
 import toast, { Toaster } from 'react-hot-toast';
 import AuthLayout from "./Pages/AuthPages/AuthLayout";
 import { useSelector } from "react-redux";
@@ -22,10 +101,9 @@ function App() {
   const Token = useSelector((state) => state.userinfo.Token);
   const is_logged = Token !== null ? true : false;
 
-
   const AllRoutes = () => (
     <Routes>
-       <Route path="*" element={<Navigate to="/" />} />
+      <Route path="*" element={<Navigate to="/" />} />
       <Route path="/" element={<Layout />}>
         <Route index element={<Navigate to="/home" replace />} />
         <Route
@@ -44,8 +122,7 @@ function App() {
             </Suspense>
           }
         />
-      
-      <Route
+        <Route
           path="/users"
           element={
             <Suspense fallback={"Loader..."}>
@@ -61,18 +138,9 @@ function App() {
             </Suspense>
           }
         />
-        </Route>
-     
+      </Route>
     </Routes>
   );
-
-  // const AuthRoutes = () => (
-  //   <Routes >
-  //     <Route path="*" element={<Navigate to="/" />} />
-  //     <Route path="/" element={<AuthLayout />} />
-      
-  //   </Routes>
-  // );
 
   const AuthRoutes = () => (
     <Routes>
@@ -80,16 +148,16 @@ function App() {
       <Route path="/" element={<AuthLayout />} />
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
-      
     </Routes>
   );
+
   return (
     <>
-      {/* <ToastContainer /> */}
-      <Toaster  position="bottom-center" />
-      <Router basename={process.env.PUBLIC_URL}>{is_logged ? <AllRoutes /> : <AuthRoutes />}</Router>
+      <Toaster position="bottom-center" />
+      <Router>{is_logged ? <AllRoutes /> : <AuthRoutes />}</Router>
     </>
   );
 }
 
 export default App;
+
