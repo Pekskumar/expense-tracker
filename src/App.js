@@ -73,7 +73,7 @@ function App() {
     <>
       <Toaster position="bottom-center" />
       <Router 
-      // basename={process.env.PUBLIC_URL}
+      basename={process.env.PUBLIC_URL}
       >{is_logged ? <AllRoutes /> : <AuthRoutes />}</Router>
     </>
   );
