@@ -154,7 +154,7 @@ function App() {
   );
 
   // Use different basenames for GitHub Pages and other deployments
-  const basename = process.env.PUBLIC_URL === "gh-pages" ? "/expense-tracker" : "/";
+  const basename = process.env.REACT_APP_DEPLOY_TARGET === "gh-pages" ? "/expense-tracker" : "/";
 
   return (
     <>
